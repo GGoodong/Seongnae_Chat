@@ -6,8 +6,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 import openai
 
 # 🔑 OpenAI 최신 방식 API Key 등록
-import os
-client = openai.OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+client = openai.OpenAI(api_key=OPENAI_API_KEY = "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")
 
 # 📄 예시 데이터프레임
 example_df = pd.DataFrame({
