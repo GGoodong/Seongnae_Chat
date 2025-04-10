@@ -76,5 +76,5 @@ if query:
         )
         answer = response.choices[0].message.content
 
-    st.subheader("🛞 Answer")
+    st.subheader("☑️ Answer")
     st.write(answer)
