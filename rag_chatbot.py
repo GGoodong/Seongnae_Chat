@@ -56,7 +56,8 @@ query = st.text_input("💬 질문을 입력하세요:")
 
 if query:
     with st.spinner("🔎 Excel 데이터에서 검색 중..."):
-        model = SentenceTransformer("BM-K/KoSimCSE-roberta", device='cpu')
+        model = SentenceTransformer("ko-roberta-local")
+        #model = SentenceTransformer("BM-K/KoSimCSE-roberta", device='cpu')
         doc_embeddings = model.encode(texts, convert_to_numpy=True)
         query_embedding = model.encode([query], convert_to_numpy=True)
 
