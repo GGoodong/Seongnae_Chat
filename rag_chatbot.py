@@ -5,8 +5,8 @@ from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 import openai
 
-# 🔑 OpenAI 최신 방식 API Key 등록
-client = openai.OpenAI(api_key="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")
+# 🔑 OpenAI API Key는 Streamlit Cloud의 secrets 관리 기능으로 숨김
+client = openai.OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 # 📄 예시 데이터프레임
 example_df = pd.DataFrame({
