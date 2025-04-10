@@ -3,10 +3,10 @@ import pandas as pd
 import numpy as np
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
-import openai
+from openai import OpenAI  # ✅ 최신 방식
 
 #🔑 API Key
-openai.api_key = "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"
+client = OpenAI(api_key="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")
 
 # 📄 예시 데이터 생성
 example_data = {
@@ -36,7 +36,6 @@ else:
     df = pd.read_excel(example_path)
     st.warning("⚠️ 파일 미업로드 시, 성내지점 소개 Chatbot의 역할을 합니다.")
 
-    
 # 전체 텍스트 결합: 제목 + 내용
 if "제목" in df.columns and "내용" in df.columns:
     df["전체"] = df["제목"].fillna("") + " " + df["내용"].fillna("")
@@ -63,15 +62,15 @@ if query:
 
     # 📚 GPT 프롬프트 구성
     context = "\n\n".join(top_docs)
-    prompt = f"""다음 문서를 참고하여 질문에 답해주세요.{context}Q: {query}A:"""
+    prompt = f"""다음 문서를 참고하여 질문에 답해주세요.\n\n{context}\n\nQ: {query}\nA:"""
 
     with st.spinner("💡 답변 생성중..."):
-        response = openai.ChatCompletion.create(
+        response = client.chat.completions.create(
             model="gpt-4",
             messages=[{"role": "user", "content": prompt}],
             temperature=0.3
         )
-        answer = response["choices"][0]["message"]["content"]
+        answer = response.choices[0].message.content
 
     st.subheader("🛞 Answer")
     st.write(answer)
