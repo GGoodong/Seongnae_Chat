@@ -5,3 +5,4 @@ openai
 scikit-learn
 sentence-transformers
 openpyxl
+torch
