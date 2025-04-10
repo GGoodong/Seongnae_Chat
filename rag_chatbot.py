@@ -43,7 +43,8 @@ else:
 # 전체 텍스트 결합: 제목 + 내용
 if "제목" in df.columns and "내용" in df.columns:
     df["전체"] = df["제목"].fillna("") + " " + df["내용"].fillna("")
-    col_options = ["제목", "내용", "전체"]
+    col_options = ["전체", "제목", "내용"]
+    default_col = "전체"
 else:
     col_options = df.columns.tolist()
 
